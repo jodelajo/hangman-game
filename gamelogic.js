@@ -10,18 +10,29 @@ function displayWordSoFar(word, guesses) {
   console.log(letterArray);
 
   // - [ ] een loop maken -> ['j','a','v','a','s','c','r','i','p','t']
-  let outcome = " ";
+  let output = '';
   for (i = 0; i < letterArray.length; i++) {
-    const lettersInWord = letterArray[i];
-    console.log(lettersInWord);
+    const letterInWord = letterArray[i];
+    console.log(letterInWord);
 
+    // - [ ] checken: zit de letter in guesses?
+    const isLetterGuessed = guesses.includes(letterInWord);
+    console.log(isLetterGuessed);
+    console.log(letterInWord, 'geraden?', isLetterGuessed);
 
+    // - [ ] if else
+    // - [ ] zo nee: "_ "
+    if (!isLetterGuessed) {
+      output = output + '_ ';
+    }
+    // - [ ] zo ja: "j " (niet j, maar de letter die we dan checken)
+    if (isLetterGuessed) {
+      output = output + letterInWord + ' ';
+    }
   }
-  // - [ ] checken: zit de letter in guesses?
-  // - [ ] if else
-  // - [ ] zo nee: "_ "
-  // - [ ] zo ja: "j " (niet j, maar de letter die we dan checken)
+  console.log(output)
   // - [ ] klaar? -> onze string die we hebben gemaakt returnen
+return output;
 }
 
 function isGameWon(word, guesses) {
