@@ -1,46 +1,92 @@
 function displayWordSoFar(word, guesses) {
-  // - [x] zet je testje op test.only (later weer weghalen)
-  // - [ ] loggen: wat is word, wat is guesses
-  // console.log(word);
-  // console.log(guesses);
+  const letterInWordArray = word.split("");
 
-  // - [ ] javascript, ['a', 'b'] -> "_ _ _ _ _ _ _ _ _ _ "
-  // - [ ] javascript "splitten" split() -> ['j','a','v','a','s','c','r','i','p','t']
-  const letterArray = word.split("");
-  console.log(letterArray);
-
-  // - [ ] een loop maken -> ['j','a','v','a','s','c','r','i','p','t']
-  let output = '';
-  for (i = 0; i < letterArray.length; i++) {
-    const letterInWord = letterArray[i];
-    console.log(letterInWord);
-
-    // - [ ] checken: zit de letter in guesses?
-    const isLetterGuessed = guesses.includes(letterInWord);
-    console.log(isLetterGuessed);
-    console.log(letterInWord, 'geraden?', isLetterGuessed);
-
-    // - [ ] if else
-    // - [ ] zo nee: "_ "
-    if (!isLetterGuessed) {
-      output = output + '_ ';
+  let output = "";
+  for (let i = 0; i < letterInWordArray.length; i++) {
+    const letterInWord = letterInWordArray[i];
+    const isletterGuessed = guesses.includes(letterInWord);
+    if (!isletterGuessed) {
+      output = output + "_ ";
     }
-    // - [ ] zo ja: "j " (niet j, maar de letter die we dan checken)
-    if (isLetterGuessed) {
-      output = output + letterInWord + ' ';
+    if (isletterGuessed) {
+      output = output + letterInWord + " ";
     }
   }
-  console.log(output)
-  // - [ ] klaar? -> onze string die we hebben gemaakt returnen
 return output;
 }
 
 function isGameWon(word, guesses) {
-  // WRITE ME
+  //doel:
+  // word = "javascript" guesses = ["j", "a", "v", "s", "c", "r", "i", "p", "t"] true
+  // word = "javascript" guesses = [], ["j", "a"] false
+
+  // strategie:
+  // kunnen we 1 letter vinden die je niet hebt geraden? return false
+  // Kunnen we niet 1 letter vinden die je niet hebt geraden? return true
+
+  // - [ ] loggen: wat is word & guesses (tussendoor loggen per stap)
+
+  // - [ ] word -> word.split("")
+  // - [ ] loopen over dat array met de letters van het woord
+  // - [ ] voor elke letter in het woord
+  // - [ ] Zit deze letter in guesses -> guesses.includes(letter)
+  // - [ ] if in de loop
+  // - [ ] in guesses true -> gaan we door
+  // - [ ] in guesses false -> return false
+  // - [ ] Zijn we aan het einde van de loop? aan het einde van die functie return true
+
+  const splitWord = word.split('');
+
+  let output = "";
+  for (let i = 0; i < splitWord.length; i++) {
+    const letterInSplitWord = splitWord[i];
+    const letterInGuesses = guesses.includes(letterInSplitWord);
+    if (!letterInGuesses) {
+      return false;
+    }
+  }
+  return true;
 }
 
+
 function isGameLost(word, guesses) {
-  // WRITE ME
+  //DOEL:
+  // word = "javascript"; guesses = ["q", "w", "e", "y", "u", "o", "d"]; -> true
+  // word = "javascript"; guesses = ["q", "w", "e", "a", "t"]; -> false
+  // STRATEGIE:
+  // fouten tellen
+  // 7 fout (of meer?) -> return true
+  // minder dan 7 fout -> return false
+
+  // - [ ] for loop over de guesses
+  // - [ ] voor elke guess
+  // - [ ] zit deze guess (letter) in het woord word.includes(guess)
+  // - [ ] counter aanmaken -> start bij 0
+  // - [ ] if
+  // - [ ] als true (we doen niets)
+  // - [ ] als false "+ doen" -> counter met 1 verhogen
+  // - [ ] aan het eind van de functie if statement
+  // - [ ] if
+  // - [ ] count is 7 -> return true
+  // - [ ] count is minder dan 7 -> return false
+
+let count = 0;
+  for (let i = 0; i < guesses.length; i++) {
+    const eachGuess = guesses[i];
+    const isLetterGuessed = word.includes(eachGuess);
+
+    if(!isLetterGuessed) {
+      count = count + 1;
+    }
+    //console.log('wat is dit?', isLetterGuessed)
+  }
+if (count === 7) {
+  return true
+}
+if (count <= 7) {
+  return false
+}
+
 }
 
 module.exports = {

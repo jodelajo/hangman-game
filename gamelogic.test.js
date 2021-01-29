@@ -1,6 +1,6 @@
 const { displayWordSoFar, isGameWon, isGameLost } = require("./gamelogic");
 
-test.only("displayWordSoFar should display an underscore followed by a space for each letter to guess", () => {
+test("displayWordSoFar should display an underscore followed by a space for each letter to guess", () => {
   // ARRANGE
   const word = "javascript";
   const guesses = [];
@@ -27,7 +27,7 @@ test("displayWordSoFar should display the letters guessed so far", () => {
 test("isGameWon should return false when all letters have not been guessed yet", () => {
   // ARRANGE
   const word = "javascript";
-  const guesses = [];
+  const guesses = ['a', 'b'];
 
   // ACT
   const gameWon = isGameWon(word, guesses);
