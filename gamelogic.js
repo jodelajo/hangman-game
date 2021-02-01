@@ -77,11 +77,14 @@ let count = 0;
 
     if(!isLetterGuessed) {
       count = count + 1;
+      galgje (count);
     }
     //console.log('wat is dit?', isLetterGuessed)
+
   }
 if (count === 7) {
   return true
+
 }
 if (count <= 7) {
   return false
@@ -89,8 +92,82 @@ if (count <= 7) {
 
 }
 
+function galgje(count) {
+  if (count === 1) {
+    console.log(`
+    |
+    |
+    |
+    |
+    |
+    ===========`);
+  }
+  else if (count === 2) {
+    console.log(`
+    ___________
+    |
+    |
+    |
+    |
+    |
+    ===========`);
+  }
+
+  else if (count === 3) {
+    console.log(`
+    ___________
+    | /      |
+    |/
+    |
+    |
+    |
+    ===========`);
+  }
+  else if (count === 4) {
+    console.log(`
+    ___________
+    | /      |
+    |/       o
+    |
+    |
+    |
+    ===========`);
+  }
+  else if (count === 5) {
+    console.log(`
+    ___________
+    | /      |
+    |/      _o_
+    |
+    |
+    |
+    ===========`);
+  }
+  else if (count === 6) {
+    console.log(`
+    ___________
+    | /      |
+    |/      _o_
+    |        O
+    |
+    |
+    ===========`);
+  }
+  else if (count === 7) {
+    console.log(`
+    ___________
+    | /      |
+    |/      _o_
+    |        O
+    |       / \\
+    |
+    ===========`);
+  }
+}
+
 module.exports = {
   displayWordSoFar: displayWordSoFar,
   isGameWon: isGameWon,
   isGameLost: isGameLost,
+  galgje: galgje,
 };
